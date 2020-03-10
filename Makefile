@@ -30,7 +30,7 @@ LDLIBS += -static-libgcc -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic -Wl,--kil
 	@printf '\t%s %s\n' WINDRES $<
 	$(WINDRES) $(WINDRESFLAGS) $< $@
 
-SOURCES := psarc/file.cpp psarc/libgen.c psarc/main.cpp psarc/psarc.cpp
+SOURCES := psarc/file.cpp psarc/main.cpp psarc/psarc.cpp
 SOURCES += external/zlib/adler32.c external/zlib/compress.c external/zlib/crc32.c external/zlib/deflate.c external/zlib/gzclose.c external/zlib/gzlib.c external/zlib/gzread.c external/zlib/gzwrite.c external/zlib/infback.c external/zlib/inffast.c external/zlib/inflate.c external/zlib/inftrees.c external/zlib/trees.c external/zlib/uncompr.c external/zlib/zutil.c
 OBJECTS := $(SOURCES:.c=.o)
 OBJECTS := $(OBJECTS:.cpp=.o)

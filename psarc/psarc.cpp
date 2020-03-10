@@ -26,7 +26,7 @@ void PSARC::inflateEntry(uint32_t entry, uint32_t *zBlocks, uint32_t cBlockSize,
 	uint64_t length = 0;
 
 	if (entry == 0) {
-		dirname = (char *)"tmp";
+		dirname = (char *)".";
 		basename = (char *)"psarc.temp";
 	}
 
@@ -93,7 +93,7 @@ void PSARC::inflateEntry(uint32_t entry, uint32_t *zBlocks, uint32_t cBlockSize,
 			}
 
 			reader.close();
-			remove("tmp/psarc.temp");
+			remove("./psarc.temp");
 		} else {
 			if (stream.offset() != _entries[entry]._length)
 				printf("File size : %" PRId64 " bytes. Expected size: %" PRId64 " bytes\n", stream.offset(), _entries[entry]._length);
@@ -220,7 +220,7 @@ void PSARC::read(const char *arcName, uint32_t start, uint32_t end, bool header)
 							char *subOutDir = dirname(subOutDirc);
 							char *outFile = basename(outFilec);
 							char *outDir;
-							if (strncmp("/", _entries[i]._name, 1) == 0) {
+							if ((_entries[i]._name != NULL) && strncmp("/", _entries[i]._name, 1) == 0) {
 								// outDir = baseDir + subOutDir
 								outDir = (char *)malloc(strlen(baseDir) + strlen(subOutDir) + 1);
 								memcpy(outDir, baseDir, strlen(baseDir));
